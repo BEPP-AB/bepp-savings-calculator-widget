@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset and base styles for the widget */
+[data-savings-calculator] {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+  box-sizing: border-box;
+}
+
+[data-savings-calculator] *,
+[data-savings-calculator] *::before,
+[data-savings-calculator] *::after {
+  box-sizing: inherit;
+}

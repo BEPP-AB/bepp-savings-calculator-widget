@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Savings Calculator Widget - Development</title>
+  </head>
+  <body
+    style="
+      margin: 0;
+      padding: 20px;
+      font-family: system-ui;
+      color: white;
+      background-color: #12161d;
+    "
+  >
+    <h1 style="text-align: center; color: #374151; margin-bottom: 2rem">
+      Savings Calculator Widget - Development Preview
+    </h1>
+
+    <div style="margin: 0 auto">
+      <p style="color: #6b7280; margin-bottom: 2rem; text-align: center">
+        This is how your widget will appear when embedded in Webflow.
+      </p>
+
+      <!-- This is where the widget will be rendered -->
+      <div id="data-savings-calculator"></div>
+
+      <div
+        style="
+          margin-top: 2rem;
+          padding: 1rem;
+          border-radius: 8px;
+          border-left: 4px solid #3b82f6;
+        "
+      >
+        <h3 style="margin: 0 0 0.5rem 0">Usage in Webflow:</h3>
+        <p style="margin: 0 0 1rem 0; color: #6b7280; font-size: 14px">
+          Use a <strong>Code Embed</strong> element with the following HTML:
+        </p>
+        <div
+          style="
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 13px;
+            margin-bottom: 1rem;
+          "
+        >
+          &lt;div id="data-savings-calculator"&gt;&lt;/div&gt;<br />
+          &lt;script
+          src="https://cdn.jsdelivr.net/gh/BEPP-AB/bepp-savings-calculator-widget@main/dist/savings-calculator-widget.iife.js"&gt;&lt;/script&gt;
+        </div>
+        <p style="margin: 0; color: #6b7280; font-size: 14px">
+          That's it! The widget will automatically load and render in the div.
+          The Code Embed block contains both the container div and the script,
+          making it a single-step integration.
+        </p>
+      </div>
+    </div>
+
+    <script type="module" src="/src/widget.tsx"></script>
+  </body>
+</html>
