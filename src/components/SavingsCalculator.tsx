@@ -48,17 +48,22 @@ const SavingsCalculator = () => {
   const isOverMaxEmployees = employeeCount > MAX_EMPLOYEE_COUNT;
 
   return (
-    <div className="p-8 max-w-2xl text-white rounded-3xl border border-[#2F3338] mx-auto bg-[#ffffff05]">
+    <div className="p-8 max-w-2xl text-white rounded-3xl border border-solid border-[#2F3338] mx-auto bg-[#ffffff05]">
       {/* Header */}
       <div className="text-center mb-4">
-        <h1 className="text-lg font-medium mb-4">OM VERKSAMHETEN</h1>
+        <h1 className="text-2xl font-bold m-0 text-[#e99529]">
+          {isOverMaxEmployees ? "x" : yearlyProfit.toLocaleString()} kr / år
+        </h1>
+        <p className="text-sm text-gray-300 mt-0">
+          potentiell ökad lönsamhet med Bepp
+        </p>
       </div>
 
       {/* Employee Count Section */}
       <div className="mb-12">
         <div className="flex flex-row justify-center items-center mb-8">
           <h2 className="text-xl font-medium">Hur många anställda är ni?</h2>
-          <div className="ml-4 bg-gray-800 px-4 py-2 rounded-lg text-lg font-semibold min-w-[80px] text-center">
+          <div className="ml-4 bg-gray-800 px-4 py-2 rounded-lg text-lg font-semibold min-w-[40px] text-center">
             {employeeCount <= MAX_EMPLOYEE_COUNT
               ? employeeCount
               : MAX_EMPLOYEE_COUNT + "+"}
@@ -106,7 +111,7 @@ const SavingsCalculator = () => {
           </p>
           <a
             href="/kontakt"
-            className="bg-[#e99529] text-[16px] text-white font-semibold py-3 px-8 rounded-full transition-colors"
+            className="bg-[#e99529] no-underline p-[10px] px-[20px] text-[16px] text-white font-semibold py-3 rounded-full transition-colors"
           >
             Kontakta oss
           </a>
@@ -150,7 +155,7 @@ const SavingsCalculator = () => {
               </div>
 
               {/* Separator Line */}
-              <div className="border-t border-[#2F3338]"></div>
+              <div className="border-t border-b-0 border-solid border-[#2F3338]"></div>
 
               {/* Total Profit Row */}
               <div className="flex flex-row justify-between items-start pt-2 text-[#e99529]">
@@ -175,10 +180,10 @@ const SavingsCalculator = () => {
           <div className="flex flex-row items-start space-x-3">
             <button
               onClick={() => setShowCalculation(!showCalculation)}
-              className="flex flex-row items-start space-x-3 cursor-pointer rounded"
+              className="flex flex-row items-start space-x-3 cursor-pointer rounded bg-inherit text-inherit border-none"
             >
               <svg
-                className={`mt-1 w-4 h-4 text-white transition-transform duration-200 ${
+                className={`mt-1 w-4 h-4 transition-transform duration-200 ${
                   showCalculation ? "rotate-90" : "rotate-0"
                 }`}
                 fill="none"
@@ -193,7 +198,9 @@ const SavingsCalculator = () => {
                   d="M9 5l7 7-7 7"
                 />
               </svg>
-              <span className="text-base select-none">Såhär har vi räknat</span>
+              <span className="text-base select-none ">
+                Såhär har vi räknat
+              </span>
             </button>
           </div>
 
@@ -202,23 +209,23 @@ const SavingsCalculator = () => {
             <div className="mt-6 p-4 bg-gray-800 rounded-lg">
               <div className="space-y-4 text-sm">
                 <div>
-                  <h5 className="font-medium text-[#e99529] mb-2">
+                  <h5 className="font-medium text-[#e99529] mb-2 mt-0 text-base">
                     1. Utan Bepp:
                   </h5>
                   <ul className="space-y-1 ml-4">
                     <li>
-                      • Varje anställd registrerar{" "}
+                      Varje anställd registrerar{" "}
                       <strong>0,1 incidenter per månad</strong>
                     </li>
                     <li>
-                      • <strong>20%</strong> av dessa incidenter leder till
+                      <strong>20%</strong> av dessa incidenter leder till
                       förbättringsåtgärder
                     </li>
                     <li>
-                      • Varje åtgärd värderas till <strong>3 500 kr</strong>
+                      Varje åtgärd värderas till <strong>3 500 kr</strong>
                     </li>
                     <li>
-                      • Månadsvärde: {employeeCount} × 0,1 × 0,2 × 3 500 ={" "}
+                      Månadsvärde: {employeeCount} × 0,1 × 0,2 × 3 500 ={" "}
                       <strong>
                         {totalActionValueWithoutBepp.toLocaleString()} kr
                       </strong>
@@ -227,23 +234,23 @@ const SavingsCalculator = () => {
                 </div>
 
                 <div>
-                  <h5 className="font-medium text-[#e99529] mb-2">
+                  <h5 className="font-medium text-[#e99529] mb-2 text-base">
                     2. Med Bepp:
                   </h5>
                   <ul className="space-y-1 ml-4">
                     <li>
-                      • Varje anställd registrerar{" "}
+                      Varje anställd registrerar{" "}
                       <strong>0,5 incidenter per månad</strong>
                     </li>
                     <li>
-                      • <strong>40%</strong> av dessa incidenter leder till
+                      <strong>40%</strong> av dessa incidenter leder till
                       förbättringsåtgärder
                     </li>
                     <li>
-                      • Varje åtgärd värderas till <strong>3 500 kr</strong>
+                      Varje åtgärd värderas till <strong>3 500 kr</strong>
                     </li>
                     <li>
-                      • Månadsvärde: {employeeCount} × 0,5 × 0,4 × 3 500 ={" "}
+                      Månadsvärde: {employeeCount} × 0,5 × 0,4 × 3 500 ={" "}
                       <strong>
                         {totalActionValueWithBepp.toLocaleString()} kr
                       </strong>
@@ -252,34 +259,34 @@ const SavingsCalculator = () => {
                 </div>
 
                 <div>
-                  <h5 className="font-medium text-[#e99529] mb-2">
+                  <h5 className="font-medium text-[#e99529] mb-2 text-base">
                     3. Beräkning av vinst:
                   </h5>
                   <ul className="space-y-1 ml-4">
                     <li>
-                      • Ökat värde per månad:{" "}
+                      Ökat värde per månad:{" "}
                       {totalActionValueWithBepp.toLocaleString()} -{" "}
                       {totalActionValueWithoutBepp.toLocaleString()} ={" "}
                       <strong>{monthlyValue.toLocaleString()} kr</strong>
                     </li>
                     <li>
-                      • Kostnad för Bepp:{" "}
+                      Kostnad för Bepp:{" "}
                       <strong>{monthlyCost.toLocaleString()} kr/månad</strong>
                     </li>
                     <li>
-                      • Nettovinst per månad: {monthlyValue.toLocaleString()} -{" "}
+                      Nettovinst per månad: {monthlyValue.toLocaleString()} -{" "}
                       {monthlyCost.toLocaleString()} ={" "}
                       <strong>{monthlyProfit.toLocaleString()} kr</strong>
                     </li>
                     <li>
-                      • Nettovinst per år: {monthlyProfit.toLocaleString()} × 12
-                      = <strong>{yearlyProfit.toLocaleString()} kr</strong>
+                      Nettovinst per år: {monthlyProfit.toLocaleString()} × 12 ={" "}
+                      <strong>{yearlyProfit.toLocaleString()} kr</strong>
                     </li>
                   </ul>
                 </div>
 
                 <div className="bg-gray-700 p-3 rounded mt-4">
-                  <p className="text-xs text-gray-300">
+                  <p className="text-xs text-gray-300 m-0">
                     <strong>Antaganden:</strong> Beräkningen baseras på att Bepp
                     ökar både antalet rapporterade incidenter (från 0,1 till 0,5
                     per anställd/månad) och andelen som leder till åtgärder
