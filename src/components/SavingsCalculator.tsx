@@ -48,22 +48,24 @@ const SavingsCalculator = () => {
   const isOverMaxEmployees = employeeCount > MAX_EMPLOYEE_COUNT;
 
   return (
-    <div className="p-8 max-w-2xl text-white rounded-3xl border border-solid border-[#2F3338] mx-auto bg-[#ffffff05]">
+    <div className="tw-p-8 tw-max-w-2xl tw-text-white tw-rounded-3xl tw-border tw-border-solid tw-border-[#2F3338] tw-mx-auto tw-bg-[#ffffff05]">
       {/* Header */}
-      <div className="text-center mb-4">
-        <h1 className="text-2xl font-bold m-0 text-[#e99529]">
+      <div className="tw-text-center tw-mb-4">
+        <h1 className="tw-text-2xl tw-font-bold tw-m-0 tw-text-[#e99529]">
           {isOverMaxEmployees ? "x" : yearlyProfit.toLocaleString()} kr / år
         </h1>
-        <p className="text-sm text-gray-300 mt-0">
+        <p className="tw-text-sm tw-text-gray-300 tw-mt-0">
           potentiell ökad lönsamhet med Bepp
         </p>
       </div>
 
       {/* Employee Count Section */}
-      <div className="mb-12">
-        <div className="flex flex-row justify-center items-center mb-8">
-          <h2 className="text-xl font-medium">Hur många anställda är ni?</h2>
-          <div className="ml-4 bg-gray-800 px-4 py-2 rounded-lg text-lg font-semibold min-w-[40px] text-center">
+      <div className="tw-mb-12">
+        <div className="tw-flex tw-flex-row tw-justify-center tw-items-center tw-mb-8">
+          <h2 className="tw-text-xl tw-my-[16px] tw-font-medium">
+            Hur många anställda är ni?
+          </h2>
+          <div className="tw-ml-4 tw-bg-gray-800 tw-px-4 tw-py-2 tw-rounded-lg tw-text-lg tw-font-semibold tw-min-w-[40px] tw-text-center">
             {employeeCount <= MAX_EMPLOYEE_COUNT
               ? employeeCount
               : MAX_EMPLOYEE_COUNT + "+"}
@@ -71,20 +73,20 @@ const SavingsCalculator = () => {
         </div>
 
         {/* Custom Slider */}
-        <div className="relative flex flex-row items-center">
+        <div className="tw-relative tw-flex tw-flex-row tw-items-center">
           <input
             type="range"
             min={MIN_EMPLOYEE_COUNT}
             max={MAX_EMPLOYEE_COUNT + 1}
             value={employeeCount}
             onChange={(e) => setEmployeeCount(Number(e.target.value))}
-            className="flex-1 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer 
-                       [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 
-                       [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:cursor-pointer 
-                       [&::-webkit-slider-thumb]:border-none [&::-webkit-slider-thumb]:shadow-lg
-                       [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:rounded-full 
-                       [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:border-none 
-                       [&::-moz-range-thumb]:shadow-lg"
+            className="tw-flex-1 tw-h-2 tw-bg-gray-700 tw-rounded-lg tw-appearance-none tw-cursor-pointer 
+                       [&::-webkit-slider-thumb]:tw-appearance-none [&::-webkit-slider-thumb]:tw-h-5 [&::-webkit-slider-thumb]:tw-w-5 
+                       [&::-webkit-slider-thumb]:tw-rounded-full [&::-webkit-slider-thumb]:tw-bg-white [&::-webkit-slider-thumb]:tw-cursor-pointer 
+                       [&::-webkit-slider-thumb]:tw-border-none [&::-webkit-slider-thumb]:tw-shadow-lg
+                       [&::-moz-range-thumb]:tw-h-5 [&::-moz-range-thumb]:tw-w-5 [&::-moz-range-thumb]:tw-rounded-full 
+                       [&::-moz-range-thumb]:tw-bg-white [&::-moz-range-thumb]:tw-cursor-pointer [&::-moz-range-thumb]:tw-border-none 
+                       [&::-moz-range-thumb]:tw-shadow-lg"
             style={{
               background: `linear-gradient(to right, white 0%, white ${
                 ((employeeCount - MIN_EMPLOYEE_COUNT) /
@@ -103,15 +105,15 @@ const SavingsCalculator = () => {
       {/* Conditional Content */}
       {isOverMaxEmployees ? (
         /* Contact Us Section for 126+ employees */
-        <div className="text-center">
-          <p className="text-lg mb-8 leading-relaxed">
+        <div className="tw-text-center">
+          <p className="tw-text-lg tw-mb-8 tw-leading-relaxed">
             För er som är fler än {MAX_EMPLOYEE_COUNT} anställda ber vi er
             kontakta oss för offert och mer utförliga detaljer kring hur mycket
             er verksamhet kan spara genom att använda Bepp.
           </p>
           <a
             href="/kontakt"
-            className="bg-[#e99529] no-underline p-[10px] px-[20px] text-[16px] text-white font-semibold py-3 rounded-full transition-colors"
+            className="tw-bg-[#e99529] tw-no-underline tw-p-[10px] tw-px-[20px] tw-text-[16px] tw-text-white tw-font-semibold tw-py-3 tw-rounded-full tw-transition-colors"
           >
             Kontakta oss
           </a>
@@ -120,34 +122,36 @@ const SavingsCalculator = () => {
         /* Calculation Section for ≤125 employees */
         <>
           {/* Summary Section */}
-          <div className="mb-8">
-            <h3 className="text-2xl font-semibold mb-8">Sammanställning</h3>
+          <div className="tw-mb-8">
+            <h3 className="tw-text-2xl tw-font-semibold tw-mb-8">
+              Sammanställning
+            </h3>
 
-            <div className="space-y-6">
-              <div className="space-y-1">
+            <div className="tw-space-y-6">
+              <div className="tw-space-y-1">
                 {/* Cost Row */}
-                <div className="flex flex-row justify-between items-start">
-                  <div className="flex-1">
-                    <div className="text-base">Kostnad för Bepp</div>
+                <div className="tw-flex tw-flex-row tw-justify-between tw-items-start">
+                  <div className="tw-flex-1">
+                    <div className="tw-text-base">Kostnad för Bepp</div>
                   </div>
-                  <div className="text-right">
-                    <div className="text-lg font-medium">
+                  <div className="tw-text-right">
+                    <div className="tw-text-lg tw-font-medium">
                       - {monthlyCost.toLocaleString()} kr / mån
                     </div>
                   </div>
                 </div>
 
                 {/* Value Row */}
-                <div className="flex flex-row justify-between items-start">
-                  <div className="flex-1 pr-4">
-                    <div className="text-base">
+                <div className="tw-flex tw-flex-row tw-justify-between tw-items-start">
+                  <div className="tw-flex-1 tw-pr-4">
+                    <div className="tw-text-base">
                       Uppskattat värde av implementerade
                       <br />
                       förbättringar genom Bepp
                     </div>
                   </div>
-                  <div className="text-right">
-                    <div className="text-lg font-medium">
+                  <div className="tw-text-right">
+                    <div className="tw-text-lg tw-font-medium">
                       {monthlyValue.toLocaleString()} kr / mån
                     </div>
                   </div>
@@ -155,20 +159,20 @@ const SavingsCalculator = () => {
               </div>
 
               {/* Separator Line */}
-              <div className="border-t border-b-0 border-solid border-[#2F3338]"></div>
+              <div className="tw-border-t tw-border-b-0 tw-border-solid tw-border-[#2F3338]"></div>
 
               {/* Total Profit Row */}
-              <div className="flex flex-row justify-between items-start pt-2 text-[#e99529]">
-                <div className="flex-1">
-                  <div className="text-lg font-medium">
+              <div className="tw-flex tw-flex-row tw-justify-between tw-items-start tw-pt-2 tw-text-[#e99529]">
+                <div className="tw-flex-1">
+                  <div className="tw-text-lg tw-font-medium">
                     Totalt ökad lönsamhet med Bepp
                   </div>
                 </div>
-                <div className="text-left">
-                  <div className="text-xl font-semibold">
+                <div className="tw-text-left">
+                  <div className="tw-text-xl tw-font-semibold">
                     {monthlyProfit.toLocaleString()} kr / mån
                   </div>
-                  <div className="text-xl font-semibold">
+                  <div className="tw-text-xl tw-font-semibold">
                     {yearlyProfit.toLocaleString()} kr / år
                   </div>
                 </div>
@@ -177,14 +181,14 @@ const SavingsCalculator = () => {
           </div>
 
           {/* Calculation Explanation */}
-          <div className="flex flex-row items-start space-x-3">
+          <div className="tw-flex tw-flex-row tw-items-start tw-space-x-3">
             <button
               onClick={() => setShowCalculation(!showCalculation)}
-              className="flex flex-row items-start space-x-3 cursor-pointer rounded bg-inherit text-inherit border-none"
+              className="tw-flex tw-flex-row tw-items-start tw-space-x-3 tw-cursor-pointer tw-rounded tw-bg-inherit tw-text-inherit tw-border-none"
             >
               <svg
-                className={`mt-1 w-4 h-4 transition-transform duration-200 ${
-                  showCalculation ? "rotate-90" : "rotate-0"
+                className={`tw-mt-1 tw-w-4 tw-h-4 tw-transition-transform tw-duration-200 ${
+                  showCalculation ? "tw-rotate-90" : "tw-rotate-0"
                 }`}
                 fill="none"
                 stroke="currentColor"
@@ -198,7 +202,7 @@ const SavingsCalculator = () => {
                   d="M9 5l7 7-7 7"
                 />
               </svg>
-              <span className="text-base select-none ">
+              <span className="tw-text-base tw-select-none ">
                 Såhär har vi räknat
               </span>
             </button>
@@ -206,13 +210,13 @@ const SavingsCalculator = () => {
 
           {/* Calculation Details (conditionally shown) */}
           {showCalculation && (
-            <div className="mt-6 p-4 bg-gray-800 rounded-lg">
-              <div className="space-y-4 text-sm">
+            <div className="tw-mt-6 tw-p-4 tw-bg-gray-800 tw-rounded-lg">
+              <div className="tw-space-y-4 tw-text-sm">
                 <div>
-                  <h5 className="font-medium text-[#e99529] mb-2 mt-0 text-base">
+                  <h5 className="tw-font-medium tw-text-[#e99529] tw-mb-2 tw-mt-0 tw-text-base">
                     1. Utan Bepp:
                   </h5>
-                  <ul className="space-y-1 ml-4">
+                  <ul className="tw-space-y-1 tw-ml-4">
                     <li>
                       Varje anställd registrerar{" "}
                       <strong>0,1 incidenter per månad</strong>
@@ -234,10 +238,10 @@ const SavingsCalculator = () => {
                 </div>
 
                 <div>
-                  <h5 className="font-medium text-[#e99529] mb-2 text-base">
+                  <h5 className="tw-font-medium tw-text-[#e99529] tw-mb-2 tw-text-base">
                     2. Med Bepp:
                   </h5>
-                  <ul className="space-y-1 ml-4">
+                  <ul className="tw-space-y-1 tw-ml-4">
                     <li>
                       Varje anställd registrerar{" "}
                       <strong>0,5 incidenter per månad</strong>
@@ -259,10 +263,10 @@ const SavingsCalculator = () => {
                 </div>
 
                 <div>
-                  <h5 className="font-medium text-[#e99529] mb-2 text-base">
+                  <h5 className="tw-font-medium tw-text-[#e99529] tw-mb-2 tw-text-base">
                     3. Beräkning av vinst:
                   </h5>
-                  <ul className="space-y-1 ml-4">
+                  <ul className="tw-space-y-1 tw-ml-4">
                     <li>
                       Ökat värde per månad:{" "}
                       {totalActionValueWithBepp.toLocaleString()} -{" "}
@@ -285,8 +289,8 @@ const SavingsCalculator = () => {
                   </ul>
                 </div>
 
-                <div className="bg-gray-700 p-3 rounded mt-4">
-                  <p className="text-xs text-gray-300 m-0">
+                <div className="tw-bg-gray-700 tw-p-3 tw-rounded tw-mt-4">
+                  <p className="tw-text-xs tw-text-gray-300 tw-m-0">
                     <strong>Antaganden:</strong> Beräkningen baseras på att Bepp
                     ökar både antalet rapporterade incidenter (från 0,1 till 0,5
                     per anställd/månad) och andelen som leder till åtgärder
