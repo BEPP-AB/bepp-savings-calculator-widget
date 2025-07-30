@@ -34,14 +34,14 @@ npm run build
 This creates optimized files in the `dist/` directory:
 - `savings-calculator-widget.iife.js` - The main widget file (hosted via jsDelivr CDN)
 
-The widget is automatically available via CDN at (the latest version pushed to main remote):
-`https://cdn.jsdelivr.net/gh/BEPP-AB/bepp-savings-calculator-widget@main/dist/savings-calculator-widget.iife.js`
+The widget is automatically available via CDN at:
+`https://cdn.statically.io/gh/BEPP-AB/bepp-savings-calculator-widget/<commit-hash>/dist/savings-calculator-widget.iife.js`
 
 **Note**: After making changes, you need to:
 1. Run `npm install` (if you added new dependencies)
 2. Run `npm run build`
 3. Commit and push to GitHub
-4. The CDN will automatically update (may take a few minutes, if needed, purge the CDN cache at https://www.jsdelivr.com/tools/purge)
+5. Update the <commit-hash> in webflow such that the latest build is downloaded
 
 ## Webflow Integration
 
@@ -54,7 +54,7 @@ Note that this has already been done on bepp.se
 
 ```html
 <div id="data-savings-calculator"></div>
-<script src="https://cdn.jsdelivr.net/gh/BEPP-AB/bepp-savings-calculator-widget@main/dist/savings-calculator-widget.iife.js"></script>
+<script src="https://cdn.statically.io/gh/BEPP-AB/bepp-savings-calculator-widget/<commit-hash>/dist/savings-calculator-widget.iife.js"></script>
 ```
 
 ### Complete Setup
