@@ -4,25 +4,14 @@ const MIN_EMPLOYEE_COUNT = 5;
 const MAX_EMPLOYEE_COUNT = 125;
 const DEFAULT_EMPLOYEE_COUNT = 30;
 
-const REGISTERED_INCIDENTS_PER_EMPLOYEE_PER_MONTH_WITHOUT_BEEP = 0.1;
-const REGISTERED_INCIDENTS_PER_EMPLOYEE_PER_MONTH_WITH_BEEP = 0.5;
+const REGISTERED_INCIDENTS_PER_EMPLOYEE_PER_MONTH_WITHOUT_BEPP = 0.1;
+const REGISTERED_INCIDENTS_PER_EMPLOYEE_PER_MONTH_WITH_BEPP = 0.5;
 
-const RATIO_OF_INCIDENTS_THAT_LEAD_TO_ACTION_WITHOUT_BEEP = 0.2;
-const RATIO_OF_INCIDENTS_THAT_LEAD_TO_ACTION_WITH_BEEP = 0.4;
+const RATIO_OF_INCIDENTS_THAT_LEAD_TO_ACTION_WITHOUT_BEPP = 0.2;
+const RATIO_OF_INCIDENTS_THAT_LEAD_TO_ACTION_WITH_BEPP = 0.4;
 
-const VALUE_OF_ACTION = 3500; // SEK
-
-// Pricing tiers based on employee count
-const calculateMonthlyCost = (employeeCount: number): number => {
-  if (employeeCount >= 1 && employeeCount <= 10) return 1450;
-  if (employeeCount >= 11 && employeeCount <= 20) return 1950;
-  if (employeeCount >= 21 && employeeCount <= 35) return 2450;
-  if (employeeCount >= 36 && employeeCount <= 60) return 3250;
-  if (employeeCount >= 61 && employeeCount <= 90) return 4050;
-  if (employeeCount >= 91 && employeeCount <= 125) return 4950;
-  // For >126 employees, return a placeholder since it requires a quote
-  return 0; // "Offert" - custom pricing
-};
+const VALUE_OF_ACTION_WITHOUT_BEPP = 2000; // SEK
+const VALUE_OF_ACTION_WITH_BEPP = 5000; // SEK
 
 const SavingsCalculator = () => {
   const [employeeCount, setEmployeeCount] = useState(DEFAULT_EMPLOYEE_COUNT);
@@ -30,20 +19,18 @@ const SavingsCalculator = () => {
 
   const totalActionValueWithoutBepp =
     employeeCount *
-    REGISTERED_INCIDENTS_PER_EMPLOYEE_PER_MONTH_WITHOUT_BEEP *
-    RATIO_OF_INCIDENTS_THAT_LEAD_TO_ACTION_WITHOUT_BEEP *
-    VALUE_OF_ACTION;
+    REGISTERED_INCIDENTS_PER_EMPLOYEE_PER_MONTH_WITHOUT_BEPP *
+    RATIO_OF_INCIDENTS_THAT_LEAD_TO_ACTION_WITHOUT_BEPP *
+    VALUE_OF_ACTION_WITHOUT_BEPP;
 
   const totalActionValueWithBepp =
     employeeCount *
-    REGISTERED_INCIDENTS_PER_EMPLOYEE_PER_MONTH_WITH_BEEP *
-    RATIO_OF_INCIDENTS_THAT_LEAD_TO_ACTION_WITH_BEEP *
-    VALUE_OF_ACTION;
+    REGISTERED_INCIDENTS_PER_EMPLOYEE_PER_MONTH_WITH_BEPP *
+    RATIO_OF_INCIDENTS_THAT_LEAD_TO_ACTION_WITH_BEPP *
+    VALUE_OF_ACTION_WITH_BEPP;
 
-  const monthlyCost = calculateMonthlyCost(employeeCount);
   const monthlyValue = totalActionValueWithBepp - totalActionValueWithoutBepp;
-  const monthlyProfit = monthlyValue - monthlyCost;
-  const yearlyProfit = monthlyProfit * 12;
+  const yearlyValue = monthlyValue * 12;
 
   const isOverMaxEmployees = employeeCount > MAX_EMPLOYEE_COUNT;
 
@@ -52,10 +39,10 @@ const SavingsCalculator = () => {
       {/* Header */}
       <div className="tw-text-center tw-mb-4">
         <h1 className="tw-text-2xl tw-font-bold tw-m-0 tw-text-[#e99529]">
-          {isOverMaxEmployees ? "x" : yearlyProfit.toLocaleString()} kr / år
+          {isOverMaxEmployees ? "x" : yearlyValue.toLocaleString()} kr / år
         </h1>
         <p className="tw-text-sm tw-text-gray-300 tw-mt-0">
-          potentiell ökad lönsamhet med Bepp
+          uppskattat ökat värde med Bepp
         </p>
       </div>
 
@@ -128,52 +115,19 @@ const SavingsCalculator = () => {
             </h3>
 
             <div className="tw-space-y-6">
-              <div className="tw-space-y-1">
-                {/* Cost Row */}
-                <div className="tw-flex tw-flex-row tw-justify-between tw-items-start">
-                  <div className="tw-flex-1">
-                    <div className="tw-text-base">Kostnad för Bepp</div>
-                  </div>
-                  <div className="tw-text-right">
-                    <div className="tw-text-lg tw-font-medium">
-                      - {monthlyCost.toLocaleString()} kr / mån
-                    </div>
-                  </div>
-                </div>
-
-                {/* Value Row */}
-                <div className="tw-flex tw-flex-row tw-justify-between tw-items-start">
-                  <div className="tw-flex-1 tw-pr-4">
-                    <div className="tw-text-base">
-                      Uppskattat värde av implementerade
-                      <br />
-                      förbättringar genom Bepp
-                    </div>
-                  </div>
-                  <div className="tw-text-right">
-                    <div className="tw-text-lg tw-font-medium">
-                      {monthlyValue.toLocaleString()} kr / mån
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Separator Line */}
-              <div className="tw-border-t tw-border-b-0 tw-border-solid tw-border-[#2F3338]"></div>
-
-              {/* Total Profit Row */}
-              <div className="tw-flex tw-flex-row tw-justify-between tw-items-start tw-pt-2 tw-text-[#e99529]">
+              {/* Total Value Row */}
+              <div className="tw-flex tw-flex-row tw-justify-between tw-items-start tw-text-[#e99529]">
                 <div className="tw-flex-1">
                   <div className="tw-text-lg tw-font-medium">
-                    Totalt ökad lönsamhet med Bepp
+                    Uppskattat ökat värde med Bepp
                   </div>
                 </div>
                 <div className="tw-text-left">
                   <div className="tw-text-xl tw-font-semibold">
-                    {monthlyProfit.toLocaleString()} kr / mån
+                    {monthlyValue.toLocaleString()} kr / mån
                   </div>
                   <div className="tw-text-xl tw-font-semibold">
-                    {yearlyProfit.toLocaleString()} kr / år
+                    {yearlyValue.toLocaleString()} kr / år
                   </div>
                 </div>
               </div>
@@ -226,10 +180,12 @@ const SavingsCalculator = () => {
                       förbättringsåtgärder
                     </li>
                     <li>
-                      Varje åtgärd värderas till <strong>3 500 kr</strong>
+                      Varje åtgärd värderas till <strong>2 000 kr</strong>
                     </li>
                     <li>
-                      Månadsvärde: {employeeCount} × 0,1 × 0,2 × 3 500 ={" "}
+                      Månadsvärde: {employeeCount} anställda × 0,1 incidenter
+                      per månad × 0,2 incidenter som leder till åtgärder × 2 000
+                      kr per åtgärd ={" "}
                       <strong>
                         {totalActionValueWithoutBepp.toLocaleString()} kr
                       </strong>
@@ -251,10 +207,12 @@ const SavingsCalculator = () => {
                       förbättringsåtgärder
                     </li>
                     <li>
-                      Varje åtgärd värderas till <strong>3 500 kr</strong>
+                      Varje åtgärd värderas till <strong>5 000 kr</strong>
                     </li>
                     <li>
-                      Månadsvärde: {employeeCount} × 0,5 × 0,4 × 3 500 ={" "}
+                      Månadsvärde: {employeeCount} anställda × 0,5 incidenter
+                      per månad × 0,4 incidenter som leder till åtgärder × 5 000
+                      kr per åtgärd ={" "}
                       <strong>
                         {totalActionValueWithBepp.toLocaleString()} kr
                       </strong>
@@ -264,7 +222,7 @@ const SavingsCalculator = () => {
 
                 <div>
                   <h5 className="tw-font-medium tw-text-[#e99529] tw-mb-2 tw-text-base">
-                    3. Beräkning av vinst:
+                    3. Beräkning av ökat värde:
                   </h5>
                   <ul className="tw-space-y-1 tw-ml-4">
                     <li>
@@ -274,30 +232,46 @@ const SavingsCalculator = () => {
                       <strong>{monthlyValue.toLocaleString()} kr</strong>
                     </li>
                     <li>
-                      Kostnad för Bepp:{" "}
-                      <strong>{monthlyCost.toLocaleString()} kr/månad</strong>
-                    </li>
-                    <li>
-                      Nettovinst per månad: {monthlyValue.toLocaleString()} -{" "}
-                      {monthlyCost.toLocaleString()} ={" "}
-                      <strong>{monthlyProfit.toLocaleString()} kr</strong>
-                    </li>
-                    <li>
-                      Nettovinst per år: {monthlyProfit.toLocaleString()} × 12 ={" "}
-                      <strong>{yearlyProfit.toLocaleString()} kr</strong>
+                      Ökat värde per år: {monthlyValue.toLocaleString()} × 12 ={" "}
+                      <strong>{yearlyValue.toLocaleString()} kr</strong>
                     </li>
                   </ul>
                 </div>
 
                 <div className="tw-bg-gray-700 tw-p-3 tw-rounded tw-mt-4">
-                  <p className="tw-text-xs tw-text-gray-300 tw-m-0">
-                    <strong>Antaganden:</strong> Beräkningen baseras på att Bepp
-                    ökar både antalet rapporterade incidenter (från 0,1 till 0,5
-                    per anställd/månad) och andelen som leder till åtgärder
-                    (från 20% till 40%). Värdet per åtgärd uppskattas till 3 500
-                    kr baserat på typiska förbättringar inom arbetsmiljö och
-                    säkerhet.
+                  <p className="tw-text-xs tw-text-gray-300 tw-m-0 tw-mb-2">
+                    <strong>Antaganden:</strong> Beräkningen baseras på tre sätt
+                    som Bepp förbättrar ert systematiska arbete:
                   </p>
+                  <ul className="tw-text-xs tw-text-gray-300 tw-mt-0 tw-mb-0 tw-ml-4 tw-space-y-1">
+                    <li>
+                      <strong>
+                        Fler incidenter rapporteras (0,1 → 0,5 per
+                        anställd/månad):
+                      </strong>{" "}
+                      Bepps användarvänliga app och låga tröskel gör det enkelt
+                      för anställda att rapportera tillbud och observationer
+                      direkt när de uppstår.
+                    </li>
+                    <li>
+                      <strong>
+                        Högre andel leder till åtgärder (20% → 40%):
+                      </strong>{" "}
+                      Med Bepps strukturerade uppföljning och tydliga
+                      ärendehantering blir fler rapporter omvandlade till
+                      konkreta förbättringsåtgärder istället för att hamna i
+                      glömska.
+                    </li>
+                    <li>
+                      <strong>
+                        Högre värde per åtgärd (2 000 kr → 5 000 kr):
+                      </strong>{" "}
+                      Bepps dataanalys och trendrapporter hjälper er att
+                      identifiera grundorsaker och prioritera rätt åtgärder,
+                      vilket leder till mer strategiska och värdefulla
+                      förbättringar jämfört med andra lösningar.
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
