@@ -110,10 +110,6 @@ const SavingsCalculator = () => {
         <>
           {/* Summary Section */}
           <div className="tw-mb-8">
-            <h3 className="tw-text-2xl tw-font-semibold tw-mb-8">
-              Sammanställning
-            </h3>
-
             <div className="tw-space-y-6">
               {/* Total Value Row */}
               <div className="tw-flex tw-flex-row tw-justify-between tw-items-start tw-text-[#e99529]">
@@ -244,7 +240,7 @@ const SavingsCalculator = () => {
                     som Bepp förbättrar ert systematiska arbete:
                   </p>
                   <ul className="tw-text-xs tw-text-gray-300 tw-mt-0 tw-mb-0 tw-ml-4 tw-space-y-1">
-                    <li>
+                    <li className="tw-text-xs">
                       <strong>
                         Fler incidenter rapporteras (0,1 → 0,5 per
                         anställd/månad):
@@ -253,7 +249,7 @@ const SavingsCalculator = () => {
                       för anställda att rapportera tillbud och observationer
                       direkt när de uppstår.
                     </li>
-                    <li>
+                    <li className="tw-text-xs">
                       <strong>
                         Högre andel leder till åtgärder (20% → 40%):
                       </strong>{" "}
@@ -262,7 +258,7 @@ const SavingsCalculator = () => {
                       konkreta förbättringsåtgärder istället för att hamna i
                       glömska.
                     </li>
-                    <li>
+                    <li className="tw-text-xs">
                       <strong>
                         Högre värde per åtgärd (2 000 kr → 5 000 kr):
                       </strong>{" "}
